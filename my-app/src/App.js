@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Nav from './Components/Nav.js';
+import { Route, Link } from 'react-router-dom';
+import SubNav from './Components/SubNav.js'
 
 function App() {
+  const [subItems, setSubItems] = useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Link className="home" to="/">Home</Link>
+        <Nav />
+        <Route exact path="/:item" render={() => (
+                    <SubNav item={subItems}/>
+                  )} />
     </div>
   );
 }
